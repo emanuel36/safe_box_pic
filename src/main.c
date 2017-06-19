@@ -7,39 +7,39 @@
 #include "../inc/main.h"
 #include "../inc/lcd16x2.h"
 #include "../inc/buttons.h"
+#include "../inc/cofre.h"
 
-#define LED1 PORTBbits.RB0
-#define LED2 PORTBbits.RB1
-#define LED3 PORTBbits.RB2
-#define LED4 PORTBbits.RB3
-
-#define _XTAL_FREQ  8000000
+#define _XTAL_FREQ  16000000
 
 int main(){
-    int button;
+    int button, tentativas, senha, senha_gravada = 123;
     TRISB = 0;
     initButons();
     while(1){
-        button = buttons();
-        switch(button){
-            case CLR:
-                LED1 = 1;
-                break;
-            case B1:
-                LED2 = 1;
-                break;
-            case B2:
-                LED3 = 1;
-                break;
-            case B3:
-                LED4 = 1;
-                break;
-            default:
-                LED1 = 0;
-                LED2 = 0;
-                LED3 = 0;
-                LED4 = 0;
+        waitPassLCD();
+        tentativas = 3;
+        senha = 0;
+        
+        while(senha < 100){
+            //lê teclado
+            button = buttons();
+            __delay_ms(200);
+
+            //verifica se digitou
+            if(button == UNPRESS){
+                continue;
+            }
+
+            //digitou
+            passLCD();
+            atualiza_senha_digitada(button, tentativas, senha);
         }
-    }
+        
+        if(senha == senha_gravada){
+            senha_correta();
+        }else{
+            senha_incorreta(tentativas);
+        }        
+    }    
     return (EXIT_SUCCESS);
 }

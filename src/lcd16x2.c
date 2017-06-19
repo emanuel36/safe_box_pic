@@ -4,7 +4,7 @@
 #include <xc.h>
 #include "../inc/lcd16x2.h"
 
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 16000000
 
 void enableLCD(){
     PORTEbits.RE1 = 1;
