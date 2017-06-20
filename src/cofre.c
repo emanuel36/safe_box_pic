@@ -20,23 +20,3 @@ void senha_correta(){
     //Destrava Porta
     //Verifica se a porta foi fechada
 }
-
-void atualiza_senha_digitada(int button, int tentativas, int senha){
-    switch(button){
-        case B1:
-            digitoLCD();
-            senha = (senha * 10) + 1;
-            break;
-        case B2:
-            digitoLCD();
-            senha = (senha * 10) + 2;
-            break;
-        case B3:
-            digitoLCD();
-            senha = (senha * 10) + 3;
-            break;   
-        default:
-           senha_incorreta(tentativas);
-           break;
-    }
-}

@@ -9,6 +9,7 @@
       <itemPath>inc/lcd16x2.h</itemPath>
       <itemPath>inc/cofre.h</itemPath>
       <itemPath>inc/trava.h</itemPath>
+      <itemPath>inc/interrupt.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -22,6 +23,7 @@
       <itemPath>src/lcd16x2.c</itemPath>
       <itemPath>src/trava.c</itemPath>
       <itemPath>src/cofre.c</itemPath>
+      <itemPath>src/interrupt.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

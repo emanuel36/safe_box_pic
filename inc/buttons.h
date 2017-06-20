@@ -17,5 +17,8 @@
 
 void initButons();
 int buttons();
+void button_1();
+void button_2();
+void button_3();
 
 #endif	/* TECLADO_H */

@@ -12,27 +12,19 @@
 #define _XTAL_FREQ  16000000
 
 int main(){
-    int button, tentativas, senha, senha_gravada = 123;
-    TRISB = 0;
-    initButons();
+    int tentativas, senha_gravada = 123;
+    
     while(1){
+        abre_servo();
+        trava_cofre();
         waitPassLCD();
         tentativas = 3;
         senha = 0;
         
         while(senha < 100){
-            //lê teclado
-            button = buttons();
-            __delay_ms(200);
-
-            //verifica se digitou
-            if(button == UNPRESS){
-                continue;
+            if(senha == 0){
+                passLCD();
             }
-
-            //digitou
-            passLCD();
-            atualiza_senha_digitada(button, tentativas, senha);
         }
         
         if(senha == senha_gravada){
@@ -41,5 +33,4 @@ int main(){
             senha_incorreta(tentativas);
         }        
     }    
-    return (EXIT_SUCCESS);
 }

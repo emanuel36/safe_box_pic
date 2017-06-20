@@ -46,6 +46,8 @@ void selectLine(int line, int position){
 
 void clear_lcd(){
     sendCMD(0x1);
+    sendCMD(0x80);
+    sendCMD(0xF);
 }
 
 void initLCD(){
@@ -54,18 +56,17 @@ void initLCD(){
     sendCMD(0x01);    
     sendCMD(0x38);
     sendCMD(0x80);    
-    sendCMD(0xf);
+    sendCMD(0xF);
     sendCMD(0x01);
 }
 
 void waitPassLCD(){
-    selectLine(1, 1);
+    clear_lcd();
     writeLCD("Cofre Fechado");
-    selectLine(2, 0);
-    writeLCD("Aguardando Senha");
 }
 
 void passLCD(){
+    clear_lcd();
     writeLCD("Digitando Senha");
     selectLine(2,0);
     writeLCD("Senha:");
@@ -76,16 +77,22 @@ void digitoLCD(){
 }
 
 void wrongPassLCD(int tentativas){
+    clear_lcd();
     char msg_tentativas[16];
-    writeLCD("Senha Incorreta");
+    writeLCD("Senha Incorreta!");
     sprintf(msg_tentativas, "Tentativas = %d", tentativas);
     selectLine(2, 0);
     writeLCD(msg_tentativas);
 }
 
 void correctPassLCD(){
+    clear_lcd();
     writeLCD("Senha Correta");
     selectLine(2,0);
     writeLCD("Cofre Aberto");
 }
 
+void cofreAberto(){
+    clear_lcd();
+    writeLCD("Cofre Aberto");
+}

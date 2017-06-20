@@ -3,33 +3,31 @@
 #include <pic18f4550.h>
 #include <xc.h>
 #include "../inc/buttons.h"
+#include "../inc/main.h"
+#include "../inc/lcd16x2.h"
 
 #define _XTAL_FREQ  16000000
 
 void initButons(){
-    TRISD = TRISD | 0b00001111;
+    config_int0();
+    config_int1();
+    config_int2();
 }
 
-int buttons(){
-    int press = UNPRESS;
-    if(!BUTTON_1){
-        if(press != UNPRESS){
-            return ERROR;
-        }
-        press = B1;
-    }
-    if(!BUTTON_2){
-        if(press != UNPRESS){
-            return ERROR;
-        }
-        press = B2;
-    }
-    if(!BUTTON_3){
-        if(press != UNPRESS){
-            return ERROR;
-        }
-        press = B3;
-    }
-    return press;
+void button_1(){
+    senha = (senha * 10) + 1;
+    digitoLCD();
+    __delay_ms(500);
 }
 
+void button_2(){
+    senha = (senha * 10) + 2;
+    digitoLCD();
+    __delay_ms(500);
+}
+
+void button_3(){ 
+    senha = (senha * 10) + 3;
+    digitoLCD();
+    __delay_ms(500);
+}

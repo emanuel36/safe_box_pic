@@ -67,4 +67,6 @@
 // CONFIG7H
 #pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
 
+int senha;
+
 #endif	/* MAIN_H */
