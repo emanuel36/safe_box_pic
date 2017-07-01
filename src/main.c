@@ -9,28 +9,27 @@
 #include "../inc/buttons.h"
 #include "../inc/cofre.h"
 
-#define _XTAL_FREQ  16000000
-
 int main(){
+    OSCCON = 0x72;
     int tentativas, senha_gravada = 123;
-    
+    initLCD();
+    initButons();
     while(1){
-        abre_servo();
+    /*  abre_servo();
         trava_cofre();
         waitPassLCD();
         tentativas = 3;
-        senha = 0;
-        
-        while(senha < 100){
-            if(senha == 0){
-                passLCD();
-            }
+        */senha = 0; 
+            waitPassLCD();
+        while(senha < 10000){
+            scanButtons();
         }
         
         if(senha == senha_gravada){
             senha_correta();
         }else{
             senha_incorreta(tentativas);
-        }        
-    }    
+        }          
+        flag = 0;
+    }
 }

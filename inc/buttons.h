@@ -16,7 +16,7 @@
 #define B3              3
 
 void initButons();
-int buttons();
+void scanButtons();
 void button_1();
 void button_2();
 void button_3();

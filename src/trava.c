@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include <xc.h>
 #include <pic18f4550.h>
+#include "../inc/main.h"
 
 #define PORTA_FECHADA 0
-
-
-#define _XTAL_FREQ  16000000
 
 void trava_servo(){
     PORTCbits.RC2 = 1;

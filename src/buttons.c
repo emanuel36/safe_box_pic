@@ -6,8 +6,6 @@
 #include "../inc/main.h"
 #include "../inc/lcd16x2.h"
 
-#define _XTAL_FREQ  16000000
-
 void initButons(){
     config_int0();
     config_int1();
@@ -16,18 +14,47 @@ void initButons(){
 
 void button_1(){
     senha = (senha * 10) + 1;
-    digitoLCD();
-    __delay_ms(500);
+    digitoLCD();  
 }
 
 void button_2(){
     senha = (senha * 10) + 2;
     digitoLCD();
-    __delay_ms(500);
 }
 
 void button_3(){ 
     senha = (senha * 10) + 3;
     digitoLCD();
-    __delay_ms(500);
+}
+
+void scanButtons(){
+    if(interrupt_flag & INT0){
+        interrupt_flag = interrupt_flag ^ INT0;
+        if(!flag){
+            passLCD();
+            flag = 1;
+        }
+        button_1();
+        __delay_ms(1000);
+    }
+        
+    if(interrupt_flag & INT1){
+        interrupt_flag = interrupt_flag ^ INT1;
+        if(!flag){
+            passLCD();
+            flag = 1;
+        }
+        button_2();
+        __delay_ms(1000);
+    }
+        
+    if(interrupt_flag & INT2){
+        interrupt_flag = interrupt_flag ^ INT2;
+        if(!flag){
+            passLCD();
+            flag = 1;
+        }
+        button_3();
+        __delay_ms(1000);
+    }
 }
