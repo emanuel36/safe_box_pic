@@ -13,6 +13,7 @@ void config_tmr0(){
     T0CON = 0x00;
     T0CONbits.TMR0ON = 1;
     T0CONbits.T0PS = 3;
+    INTCON2bits.TMR0IP = 1;
     INTCONbits.TMR0IE = 1;
     INTCONbits.GIE_GIEH = 1;
 }
@@ -58,5 +59,9 @@ void interrupt ISR(){
     if(INTCON3bits.INT2IF){     //Botão 3 pressionado
         INTCON3bits.INT2F = 0; 
         interrupt_flag = interrupt_flag | INT2;
-    } 
+    }
+    if(INTCONbits.TMR0IF){
+        INTCONbits.TMR0IF = 0;
+        interrupt_flag = interrupt_flag | TIMER0;
+    }
 }

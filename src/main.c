@@ -11,25 +11,29 @@
 
 int main(){
     OSCCON = 0x72;
-    int tentativas, senha_gravada = 123;
+    int tentativas = 3, senha_gravada = 123;
     initLCD();
     initButons();
+    init_alarme();
+    init_sensor_magnetico();
+    init_lampada();
+    //trava_cofre();
+    waitPassLCD();
     while(1){
-    /*  abre_servo();
-        trava_cofre();
         waitPassLCD();
-        tentativas = 3;
-        */senha = 0; 
-            waitPassLCD();
-        while(senha < 10000){
+        senha = 0; 
+        while(senha < 1000){
+            if(porta_aberta()){
+                alarme(1);
+            }
             scanButtons();
         }
         
         if(senha == senha_gravada){
-            senha_correta();
+            senha_correta(tentativas);
         }else{
             senha_incorreta(tentativas);
-        }          
+        }       
         flag = 0;
     }
 }

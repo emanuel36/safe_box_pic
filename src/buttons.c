@@ -2,6 +2,7 @@
 #include <string.h>
 #include <pic18f4550.h>
 #include <xc.h>
+#include "../inc/interrupt.h"
 #include "../inc/buttons.h"
 #include "../inc/main.h"
 #include "../inc/lcd16x2.h"

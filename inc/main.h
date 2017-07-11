@@ -1,8 +1,6 @@
 #ifndef MAIN_H
 #define	MAIN_H
     
-
-
 // PIC18F4550 Configuration Bit Settings
 
 // 'C' source line config statements
@@ -78,8 +76,13 @@ int senha;
 int flag = 0;
 char interrupt_flag = 0;
 
-#define INT0 0b1
-#define INT1 0b10
-#define INT2 0b100
+#define INT0    0b1
+#define INT1    0b10
+#define INT2    0b100
+#define TIMER0  0b1000
+
+#define SENSOR_MAGNETICO PORTBbits.RB5 
+#define ALARME           PORTBbits.RB4
+#define LAMPADA          PORTBbits.RB6
 
 #endif	/* MAIN_H */

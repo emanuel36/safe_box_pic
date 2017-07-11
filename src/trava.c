@@ -4,8 +4,6 @@
 #include <pic18f4550.h>
 #include "../inc/main.h"
 
-#define PORTA_FECHADA 0
-
 void trava_servo(){
     PORTCbits.RC2 = 1;
     __delay_us(3500);
@@ -21,12 +19,13 @@ void abre_servo(){
 }
 
 void trava_cofre(){
+    abre_servo();
     while(1){
-        if(PORTA_FECHADA){
+        if(!porta_aberta()){
             trava_servo();
         }
         __delay_ms(700);
-        if(PORTA_FECHADA){
+        if(!porta_aberta()){
             break;
         }
         abre_servo();
