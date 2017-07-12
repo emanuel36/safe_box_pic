@@ -15,47 +15,53 @@ void initButons(){
 
 void button_1(){
     senha = (senha * 10) + 1;
-    digitoLCD();  
+    //digitoLCD(); 
+    writeLCD("1");
 }
 
 void button_2(){
     senha = (senha * 10) + 2;
-    digitoLCD();
+    //digitoLCD();
+    writeLCD("2");
 }
 
 void button_3(){ 
     senha = (senha * 10) + 3;
-    digitoLCD();
+    //digitoLCD();
+    writeLCD("3");
 }
 
 void scanButtons(){
     if(interrupt_flag & INT0){
-        interrupt_flag = interrupt_flag ^ INT0;
+        interrupt_flag = 0;
         if(!flag){
             passLCD();
             flag = 1;
         }
         button_1();
-        __delay_ms(1000);
+        __delay_ms(500);
+        INTCONbits.GIE_GIEH = 1;
     }
         
     if(interrupt_flag & INT1){
-        interrupt_flag = interrupt_flag ^ INT1;
+        interrupt_flag = 0;
         if(!flag){
             passLCD();
             flag = 1;
         }
         button_2();
-        __delay_ms(1000);
+        __delay_ms(500);
+        INTCONbits.GIE_GIEH = 1;
     }
         
     if(interrupt_flag & INT2){
-        interrupt_flag = interrupt_flag ^ INT2;
+        interrupt_flag = 0;
         if(!flag){
             passLCD();
             flag = 1;
         }
         button_3();
-        __delay_ms(1000);
+        __delay_ms(500);
+        INTCONbits.GIE_GIEH = 1;
     }
 }

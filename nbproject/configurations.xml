@@ -10,6 +10,7 @@
       <itemPath>inc/cofre.h</itemPath>
       <itemPath>inc/trava.h</itemPath>
       <itemPath>inc/interrupt.h</itemPath>
+      <itemPath>inc/pwm.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -24,6 +25,7 @@
       <itemPath>src/trava.c</itemPath>
       <itemPath>src/cofre.c</itemPath>
       <itemPath>src/interrupt.c</itemPath>
+      <itemPath>src/pwm.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

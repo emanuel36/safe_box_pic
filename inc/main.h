@@ -72,7 +72,7 @@
 
 #define _XTAL_FREQ  8000000
 
-int senha;
+int senha, tentativas = 3;
 int flag = 0;
 char interrupt_flag = 0;
 

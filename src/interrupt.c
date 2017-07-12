@@ -46,22 +46,21 @@ void config_int2(){
 }
 
 void interrupt ISR(){
-    if(INTCONbits.INT0IF){      //Botão 1 pressionado
+    if(INTCONbits.INT0IF){
+        INTCONbits.GIE_GIEH = 0;  //Botão 1 pressionado
         INTCONbits.INT0IF = 0;
         interrupt_flag = interrupt_flag | INT0;
     }
     
     if(INTCON3bits.INT1IF){     //Botão 2 pressionado    
+        INTCONbits.GIE_GIEH = 0;
         INTCON3bits.INT1IF = 0;
         interrupt_flag = interrupt_flag | INT1;
     }
     
     if(INTCON3bits.INT2IF){     //Botão 3 pressionado
+        INTCONbits.GIE_GIEH = 0;
         INTCON3bits.INT2F = 0; 
         interrupt_flag = interrupt_flag | INT2;
-    }
-    if(INTCONbits.TMR0IF){
-        INTCONbits.TMR0IF = 0;
-        interrupt_flag = interrupt_flag | TIMER0;
     }
 }

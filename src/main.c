@@ -8,31 +8,35 @@
 #include "../inc/lcd16x2.h"
 #include "../inc/buttons.h"
 #include "../inc/cofre.h"
+#include "../inc/pwm.h"
 
 int main(){
     OSCCON = 0x72;
-    int tentativas = 3, senha_gravada = 123;
+    int senha_gravada = 213;
+    PWM_Init(); 
+    Period = setPeriodTo(50); 
     initLCD();
     initButons();
     init_alarme();
     init_sensor_magnetico();
     init_lampada();
-    //trava_cofre();
-    waitPassLCD();
+    cofreLigado();
+    trava_cofre();
+    __delay_ms(1000);
+
     while(1){
         waitPassLCD();
         senha = 0; 
-        while(senha < 1000){
-            if(porta_aberta()){
+        while(senha < 100){
+            if(porta_aberta() && ALARME == 0){
                 alarme(1);
             }
             scanButtons();
         }
-        
         if(senha == senha_gravada){
-            senha_correta(tentativas);
+            senha_correta();
         }else{
-            senha_incorreta(tentativas);
+            senha_incorreta();
         }       
         flag = 0;
     }

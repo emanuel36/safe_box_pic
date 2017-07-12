@@ -7,22 +7,24 @@
 #include "../inc/lcd16x2.h"
 #include "../inc/cofre.h"
 
-void senha_incorreta(int tentativas){
+void senha_incorreta(){
     tentativas--;
     wrongPassLCD(tentativas);
     if(tentativas <= 0){
         alarme(1);    //Alarma
     }
-    __delay_ms(500);
+    __delay_ms(800);
 }
 
-void senha_correta(int tentativas){
+void senha_correta(){
     alarme(0);  //Desliga Alarme
     correctPassLCD();   //Atualiza Display
     lampada(1);     //Acende Lâmpada
     abre_servo();   //Destrava Porta
     tentativas = 3;
+    __delay_ms(5000);
     while(porta_aberta());
+    trava_cofre();
 }
 
 void init_alarme(){
@@ -47,6 +49,7 @@ void alarme(int valor){
 
 void init_lampada(){
     TRISBbits.RB6 = 0;
+    PORTBbits.RB6 = 0;
 }
 
 void lampada(int valor){

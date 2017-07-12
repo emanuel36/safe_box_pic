@@ -4,8 +4,8 @@
 #include <xc.h>
 #include <pic18f4550.h>
 
-void senha_incorreta(int tentativas);
-void senha_correta(int tentativas);
+void senha_incorreta();
+void senha_correta();
 void init_alarme();
 void init_sensor_magnetico();
 int porta_aberta();
