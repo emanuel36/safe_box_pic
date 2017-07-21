@@ -1,8 +1,20 @@
 # Project Name
-Safe Box Using PIC microcontroles
+Safe Box using PIC18F4550 microcontroler
 
 # Overview
-This project was a proof of the architecture discipline of computers II. Its functionality is very simple: it shows the contents of the address region specified by the user.
+This is the code for a security vault, which opens if the correct password is entered. Messages are shown on a display and if there are excessive password or break-in errors an alarm is triggered.
+This was a final project of a discipline of my graduation.
 
 ## Platform
 PIC18F4550
+
+## Compilation
+MPLAB tool
+
+## Components
+- Buttons
+- Buzzer
+- Servo
+- Lamp
+- Display LCD
+- Magnet sensor
